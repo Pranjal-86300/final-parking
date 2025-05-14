@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card skin-card">
+    <h2>Your Parking Summary</h2>
+    <canvas id="summaryChart"></canvas>
+    <table>
+        <thead>
+            <tr>
+                <th>Spot</th>
+                <th>Lot</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in reservations %}
+                <tr>
+                    <td>{{ res.spot_id }}</td>
+                    <td>{{ res.lot.name }}</td>
+                    <td>{{ res.in_time }}</td>
+                    <td>{{ res.out_time or 'In Use' }}</td>
+                    <td>{{ res.cost if res.cost else '-' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('user_dashboard') }}" class="back-btn">⬅️ Back</a>
+</div>
+
+<script>
+    const ctx = document.getElementById('summaryChart');
+    const data = {{ chart_data|safe }};
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: { responsive: true }
+    });
+</script>
+{% endblock %}

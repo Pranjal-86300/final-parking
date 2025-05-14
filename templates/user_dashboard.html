@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card green-card">
+    <h2>Welcome, {{ user.username }}</h2>
+    <h3>Select a Lot to Park</h3>
+    <ul>
+        {% for lot in lots %}
+        <li>
+            <strong>{{ lot.name }}</strong> — {{ lot.address }} ({{ lot.price }} ₹/hr)
+            <form method="POST" action="{{ url_for('book_spot') }}">
+                <input type="hidden" name="lot_id" value="{{ lot.id }}">
+                <button type="submit">🚗 Book Spot</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Your Current Reservation:</h3>
+    {% if active_reservation %}
+        <p>Spot #{{ active_reservation.spot_id }} in {{ active_reservation.lot.name }}</p>
+        <a href="{{ url_for('release_spot', spot_id=active_reservation.spot_id) }}" class="release-btn">❌ Release</a>
+    {% else %}
+        <p>No active reservation.</p>
+    {% endif %}
+    <a href="{{ url_for('user_summary') }}" class="summary-btn">📊 View Summary</a>
+</div>
+{% endblock %}

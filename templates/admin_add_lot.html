@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card skin-card">
+    <h2>Add New Parking Lot</h2>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <form method="post">
+        <input type="text" name="name" placeholder="Lot Name" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="text" name="pincode" placeholder="Pincode" required>
+        <input type="number" name="price" placeholder="Price per hour" required>
+        <input type="number" name="max_spots" placeholder="Number of Spots" required>
+        <button type="submit">Add Lot</button>
+    </form>
+</div>
+{% endblock %}

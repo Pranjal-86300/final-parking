@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card skin-card">
+    <h2>Edit Parking Lot</h2>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <form method="post">
+        <input type="text" name="name" value="{{ lot.name }}" required>
+        <input type="text" name="address" value="{{ lot.address }}" required>
+        <input type="text" name="pincode" value="{{ lot.pincode }}" required>
+        <input type="number" name="price" value="{{ lot.price }}" required>
+        <button type="submit">Update Lot</button>
+    </form>
+</div>
+{% endblock %}

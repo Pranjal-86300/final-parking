@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard">
+    <h2>Admin Dashboard</h2>
+    <div class="stats">
+        <p>Total Lots: {{ total_lots }}</p>
+        <p>Total Spots: {{ total_spots }}</p>
+        <p>Occupied Spots: {{ occupied_spots }}</p>
+    </div>
+    <canvas id="usageChart" width="400" height="200"></canvas>
+    <div class="actions">
+        <a href="{{ url_for('add_lot') }}" class="card skin-card">➕ Add Parking Lot</a>
+        <a href="{{ url_for('view_users') }}" class="card skin-card">👥 View Users</a>
+    </div>
+    <h3>All Parking Lots</h3>
+    <ul>
+        {% for lot in lots %}
+            <li>
+                <strong>{{ lot.name }}</strong> ({{ lot.address }}) - ₹{{ lot.price }}<br>
+                <a href="{{ url_for('edit_lot', lot_id=lot.id) }}">✏️ Edit</a> |
+                <a href="{{ url_for('delete_lot', lot_id=lot.id) }}">🗑️ Delete</a> |
+                <a href="{{ url_for('view_spots', lot_id=lot.id) }}">🚗 View Spots</a>
+            </li>
+        {% else %}
+            <p>No lots added yet.</p>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    const ctx = document.getElementById('usageChart');
+    const usageChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Occupied', 'Available'],
+            datasets: [{
+                data: [{{ occupied_spots }}, {{ total_spots - occupied_spots }}],
+                backgroundColor: ['#FF7043', '#81C784']
+            }]
+        }
+    });
+</script>
+{% endblock %}

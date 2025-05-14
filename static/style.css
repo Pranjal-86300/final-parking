@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d0f0d0;
+}
+
+header, footer {
+    background-color: #006400;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+.card {
+    background-color: #fffaf0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 2em;
+    margin: 2em auto;
+    width: 80%;
+    max-width: 700px;
+}
+
+.green-card {
+    background-color: #e6ffe6;
+}
+
+.skin-card {
+    background-color: #fff0e6;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 0.75em;
+    text-align: center;
+}
+
+a, button {
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    color: white;
+    background-color: #006400;
+    margin-top: 1em;
+    display: inline-block;
+    cursor: pointer;
+}
+
+a.back-btn {
+    background-color: #999;
+}
+
+a.release-btn {
+    background-color: #cc0000;
+}
+
+a.summary-btn {
+    background-color: #003366;
+}
+
+form {
+    display: inline;
+}
