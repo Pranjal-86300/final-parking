@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="card skin-card">
+<div class="card error-card">
     <h2>404 - Page Not Found</h2>
-    <p>The page you’re looking for doesn’t exist.</p>
-    <a href="{{ url_for('login') }}" class="back-btn">🔙 Return to Login</a>
+    <p>Oops! The page you're looking for doesn't exist.</p>
+    <a href="{{ url_for('login') }}">Back to Login</a>
 </div>
 {% endblock %}

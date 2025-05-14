@@ -1,34 +1,31 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="card skin-card">
-    <h2>Spots in {{ lot.name }}</h2>
-    <p>Address: {{ lot.address }}</p>
+<div class="dashboard admin-view-spots">
+    <h2>Parking Spots - {{ lot.name }}</h2>
     <table>
         <thead>
             <tr>
                 <th>Spot ID</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for spot in spots %}
-                <tr>
-                    <td>{{ spot.id }}</td>
-                    <td>{{ 'Occupied' if spot.status == 'O' else 'Available' }}</td>
-                    <td>
-                        {% if spot.status == 'A' %}
-                            <a href="{{ url_for('delete_spot', spot_id=spot.id) }}">🗑️ Delete</a>
-                        {% else %}
-                            In Use
-                        {% endif %}
-                    </td>
-                </tr>
-            {% else %}
-                <tr><td colspan="3">No spots found.</td></tr>
+            <tr>
+                <td>{{ spot.id }}</td>
+                <td>{{ spot.status }}</td>
+                <td>
+                    {% if spot.status == 'A' %}
+                        <a href="{{ url_for('delete_spot', spot_id=spot.id) }}">Delete</a>
+                    {% else %}
+                        Occupied
+                    {% endif %}
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{{ url_for('admin_dashboard') }}" class="back-btn">⬅️ Back</a>
 </div>
 {% endblock %}

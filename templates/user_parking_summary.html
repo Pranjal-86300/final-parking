@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="card skin-card">
-    <h2>Your Parking Summary</h2>
-    <canvas id="summaryChart"></canvas>
+<div class="dashboard user-summary">
+    <h2>Parking History Summary</h2>
+
     <table>
         <thead>
             <tr>
-                <th>Spot</th>
-                <th>Lot</th>
-                <th>In Time</th>
-                <th>Out Time</th>
-                <th>Cost</th>
+                <th>Spot</th><th>Lot</th><th>In Time</th><th>Out Time</th><th>Cost</th>
             </tr>
         </thead>
         <tbody>
-            {% for res in reservations %}
-                <tr>
-                    <td>{{ res.spot_id }}</td>
-                    <td>{{ res.lot.name }}</td>
-                    <td>{{ res.in_time }}</td>
-                    <td>{{ res.out_time or 'In Use' }}</td>
-                    <td>{{ res.cost if res.cost else '-' }}</td>
-                </tr>
+            {% for r in reservations %}
+            <tr>
+                <td>{{ r.spot.id }}</td>
+                <td>{{ r.spot.lot.name }}</td>
+                <td>{{ r.in_time }}</td>
+                <td>{{ r.out_time or 'Active' }}</td>
+                <td>{{ r.cost if r.cost else '-' }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{{ url_for('user_dashboard') }}" class="back-btn">⬅️ Back</a>
-</div>
 
-<script>
-    const ctx = document.getElementById('summaryChart');
-    const data = {{ chart_data|safe }};
-    new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: { responsive: true }
-    });
-</script>
+    <canvas id="summaryChart" width="400" height="200"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('summaryChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ chart_data.labels|safe }},
+                datasets: [{
+                    label: 'Total Cost by Lot',
+                    data: {{ chart_data.costs|safe }},
+                    backgroundColor: '#81c784'
+                }]
+            }
+        });
+    </script>
+</div>
 {% endblock %}

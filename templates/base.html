@@ -8,15 +8,13 @@
 </head>
 <body>
     <header>
-        <h1>🚗 Vehicle Parking System</h1>
-        {% if session.username %}
+        <h1>Vehicle Parking System</h1>
+        {% if session.get('user_role') %}
         <nav>
-            <span>Welcome, {{ session.username }}</span>
             <a href="{{ url_for('logout') }}">Logout</a>
         </nav>
         {% endif %}
     </header>
-
     <main>
         {% block content %}{% endblock %}
     </main>

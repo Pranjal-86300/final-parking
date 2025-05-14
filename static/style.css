@@ -1,73 +1,76 @@
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #d0f0d0;
+    background-color: #e8f5e9;
+    margin: 0;
+    padding: 0;
 }
 
-header, footer {
-    background-color: #006400;
+header {
+    background-color: #2e7d32;
     color: white;
-    padding: 1em;
-    text-align: center;
+    padding: 10px 20px;
 }
 
-.card {
-    background-color: #fffaf0;
+nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+.card, .dashboard-cards .card {
+    background-color: #fbe9e7;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 2em;
-    margin: 2em auto;
-    width: 80%;
-    max-width: 700px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.green-card {
-    background-color: #e6ffe6;
+.dashboard-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
-.skin-card {
-    background-color: #fff0e6;
+.button {
+    background-color: #81c784;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.error {
+    color: red;
+}
+
+.info {
+    color: #333;
+    background-color: #dcedc8;
+    padding: 10px;
+    border-radius: 6px;
 }
 
 table {
     width: 100%;
+    background-color: #fff;
     border-collapse: collapse;
-    margin-top: 1em;
+    margin-top: 20px;
 }
 
-table, th, td {
+table th, table td {
+    padding: 10px;
     border: 1px solid #ccc;
-}
-
-th, td {
-    padding: 0.75em;
-    text-align: center;
-}
-
-a, button {
-    padding: 0.5em 1em;
-    border-radius: 6px;
-    border: none;
-    text-decoration: none;
-    color: white;
-    background-color: #006400;
-    margin-top: 1em;
-    display: inline-block;
-    cursor: pointer;
-}
-
-a.back-btn {
-    background-color: #999;
-}
-
-a.release-btn {
-    background-color: #cc0000;
-}
-
-a.summary-btn {
-    background-color: #003366;
-}
-
-form {
-    display: inline;
 }
